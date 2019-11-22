@@ -1,4 +1,6 @@
 data/
+npy_data/
+dcm_data/
 *.npy
 *.DCM
 .DS_Store
