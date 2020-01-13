@@ -12,6 +12,45 @@ import matplotlib.pyplot as plt
 plt.style.use('seaborn-poster')
 import random
 from sklearn.model_selection import train_test_split
+from PIL import Image
+
+def load_tif_scan(path):
+    slices = []
+    files = glob(path + '/*.tif')
+    files = natural_sort(files)
+    for file in files:
+        im = Image.open(file)
+        # Convert to Numpy Array
+        imarray = np.array(im)
+        # Normalize
+        #x = (x - 128.0) / 128.0
+        x = np.squeeze(imarray)
+        slices.append(x)
+    slices = np.array(slices)
+    #slices = np.flip(slices, 0) #masks were saved in reverse order
+    return slices
+
+def get_aaron_data(TEST_ID,IMG_WIDTH,IMG_HEIGHT,NUM_SLICES,IMG_CHANNELS):
+    TEST_PATH = '../npy_data/aaron/'
+    # Get and resize test images
+    #print('Getting test images and masks ... ')
+    X_test = np.zeros((NUM_SLICES, IMG_HEIGHT, IMG_WIDTH, IMG_CHANNELS), dtype=np.uint16)
+    y_test = np.zeros((NUM_SLICES, IMG_HEIGHT, IMG_WIDTH, 1), dtype=np.bool)
+    for ch in range(IMG_CHANNELS):
+        i = 0
+        path = TEST_PATH + 'imgs/' + str(ch) + '/' + TEST_ID
+        img = np.load(path)[:,:,:]
+        mask = np.zeros((IMG_HEIGHT, IMG_WIDTH, 1), dtype=np.bool)
+        maskpath = TEST_PATH + 'labels/' + TEST_ID
+        mask_ = np.load(maskpath)[:,:,:,np.newaxis]
+        mask = np.maximum(mask, mask_)
+        for i in range(NUM_SLICES):
+            X_test[i,:,:,ch] = img[i]
+            y_test[i] = mask[i]
+            i+=1
+    print('Done!')
+    
+    return (X_test, y_test)
 
 def natural_sort(l): 
     convert = lambda text: int(text) if text.isdigit() else text.lower() 
