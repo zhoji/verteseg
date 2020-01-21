@@ -2,8 +2,12 @@
 
 import sys 
 import os
+stderr = sys.stderr
+sys.stderr = open(os.devnull, 'w')
+sys.path.append(os.path.relpath("code/"))
 from data import *
 from model import *
+sys.stderr = stderr
 
 import argparse
 my_parser = argparse.ArgumentParser(description='Get DICOM masks of vertebrae from sagittal IDEAL images')
@@ -142,7 +146,7 @@ for file in files:
     # Change pixel data to predicted values
     ds.PixelData = preds_test_t.tobytes()
     print("Writing test file", save_string)
-    filename = save_path + id_suffix + '/' + save_string
+    filename = save_path + id_suffix + '/' + series_num + '/' + save_string
     ds.save_as(filename)
     print("File saved.")
     """print('Load file {} ...'.format(filename))
