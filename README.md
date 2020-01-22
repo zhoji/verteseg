@@ -1,6 +1,8 @@
 # Automatic Vertebral Segmentation
 
-Get DICOM masks of vertebrae from sagittal IDEAL ( images<br />
+Get DICOM masks of vertebrae from **sagittal IDEAL** (**I**terative **D**ecomposition of water and fat with **E**cho **A**symmetric and **L**east-squares estimation) spine MR images<br />
+![alt text](./imgs/example.pdf)
+
 This function should work on any Radiology SCS Linux environment.
 Make sure to switch to the `bash` environment.
 
