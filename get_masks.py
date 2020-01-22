@@ -145,8 +145,10 @@ for file in files:
     ds.ContentTime = timeStr
     # Change pixel data to predicted values
     ds.PixelData = preds_test_t.tobytes()
-    print("Writing test file", save_string)
-    filename = save_path + id_suffix + '/' + series_num + '/' + save_string
+    filepath = save_path + id_suffix + '/' + series_num + '/'
+    if not os.path.isdir(filepath):
+        os.mkdir(filepath)
+    filename = filepath + save_string
     ds.save_as(filename)
     print("File saved.")
     """print('Load file {} ...'.format(filename))
