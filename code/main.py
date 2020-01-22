@@ -14,7 +14,7 @@ params = {'IMG_WIDTH' : width,
           'NUM_SLICES' : slices,
           'IMG_CHANNELS' : channels,
           'TRAIN_PATH' : train_path,
-          'TEST_PATH' : test_path'}
+          'TEST_PATH' : test_path}
 
 (X_train, X_test, y_train, y_test) = get_data(**params)
 
