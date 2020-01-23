@@ -87,7 +87,7 @@ def get_input_data(ID,SLICE,PATH,WLD,IMG_WIDTH,IMG_HEIGHT,IMG_CHANNELS):
     
     _, water_ch_name = os.path.split(dir_names[2])
     save_string = ID+'S'+water_ch_name+'I_mask_pred_'+SLICE+'.DCM'
-    print('Done!')
+    print('Created '+save_string)
     
     return X_test, save_string
 
@@ -115,7 +115,7 @@ id_suffix = exam_num
 series_num = s_num
 wld = '/'+series_num+'*'
 print(id_suffix)
-files = glob(DATA_PATH + id_suffix + wld + '/*.DCM')
+files = glob(DATA_PATH + id_suffix + '/' +  series_num + '/*.DCM')
 files = natural_sort(files)
 if not os.path.exists(save_path+id_suffix):
     os.makedirs(save_path+id_suffix)
