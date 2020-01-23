@@ -1,13 +1,14 @@
 # Automatic Vertebral Segmentation
 
 Get DICOM masks of vertebrae from **sagittal IDEAL** (**I**terative **D**ecomposition of water and fat with **E**cho **A**symmetric and **L**east-squares estimation) **spine MR images**<br />
+These masks are generated from a U-net ([Ronneberger et al., 2015](https://arxiv.org/abs/1505.04597)) that was trained on the water, fat, fat fraction, and R2* IDEAL images and manual segmentations.
 ![alt text](imgs/example-1.png)
-This function should work on any Radiology SCS Linux environment.
+This function should work on any UCSF Dept. of Radiology SCS Linux environment.
 Make sure to switch to the `bash` environment.
 
 ## Setup
 ### Installing a virtual environment on SCS
-*Adapted from the [Radiology wiki](https://wiki.radiology.ucsf.edu/bin/view/SCS/Tutorials/PythonIntro/)*<br />
+*Adapted from the [UCSF Dept. of Radiology wiki](https://wiki.radiology.ucsf.edu/bin/view/SCS/Tutorials/PythonIntro/)*<br />
 Set up a conda environment if you do not have all the packages/compatible versions (the list of dependencies is listed in `environment.yml`).<br />
 
 **Set path to desired Anaconda installation**<br />
@@ -53,3 +54,7 @@ python get_masks.py [-h] --data_path "/path/to/your/data/" --exam "E1234" --seri
 This assumes that your data is organized such that the fat fraction DICOM series is located in `/path/to/your/data/E1234/5/`<br />
 Masks will be saved as `/path/to/save/masks/E1234/5/E1234S501I_mask_pred_#.DCM` where # is the slice number.
 
+## Credits
+
+This was created by the [Musculoskeletal Magnetic Resonance Imaging Lab](https://profiles.ucsf.edu/roland.krug).<br />
+Please contact [Jiamin Zhou, MS](https://profiles.ucsf.edu/jiamin.zhou) if you have any questions or comments.
