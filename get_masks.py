@@ -51,6 +51,7 @@ import datetime
 def get_input_data(ID,SLICE,PATH,WLD,IMG_WIDTH,IMG_HEIGHT,IMG_CHANNELS):
     X_test = np.zeros((1, IMG_HEIGHT, IMG_WIDTH, IMG_CHANNELS), dtype=np.uint16)
     dir_names = glob(PATH+ID+WLD)
+    dir_names = [x for x in dir_names if "_S" not in x]
     dir_names = natural_sort(dir_names)
     #1st ff, 2nd r2*, 3rd water, 4th fat
     #water ch = 0, ix = 2
