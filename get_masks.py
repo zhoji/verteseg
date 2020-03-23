@@ -125,20 +125,10 @@ for file in files:
     (X_test, save_string) = get_input_data(id_suffix, slice_num, DATA_PATH, wld, width, height, channels)
     # Predict on each slice and save masks as DICOM using the same slice's mask's metadata
     preds_test = model.predict(X_test, verbose=1)
-    #print(preds_test.shape)
     preds_test = preds_test.squeeze()
     # Threshold predictions
     preds_test_t = (preds_test > 0.5).astype(np.uint16)
-    #print(preds_test_t.shape)
-    #plt.imshow(preds_test_t, cmap='gray')
-    #plt.show()
     ds = dicom.dcmread(file)
-    #print(ds)
-    """code_lines = code_file(file)
-    exec(code_lines)
-    # Set the transfer syntax
-    ds.is_little_endian = True
-    ds.is_implicit_VR = True"""
     # Set creation date/time
     dt = datetime.datetime.now()
     ds.ContentDate = dt.strftime('%Y%m%d')
@@ -152,6 +142,3 @@ for file in files:
     filename = filepath + save_string
     ds.save_as(filename)
     print("File saved.")
-    """print('Load file {} ...'.format(filename))
-    ds = dicom.dcmread(filename)
-    print(ds)"""
