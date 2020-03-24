@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+import time
+start = time.time()
 import sys 
 import os
 stderr = sys.stderr
@@ -142,3 +144,5 @@ for file in files:
     filename = filepath + save_string
     ds.save_as(filename)
     print("File saved.")
+
+print('Time for completion: ', time.time()-start, 's')
