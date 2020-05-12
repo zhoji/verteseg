@@ -54,6 +54,34 @@ python get_masks.py [-h] --data_path "/path/to/your/data/" --exam "E1234" --seri
 This assumes that your data is organized such that the fat fraction DICOM series is located in `/path/to/your/data/E1234/5/`<br />
 Masks will be saved as `/path/to/save/masks/E1234/5/E1234S501I_mask_pred_#.DCM` where # is the slice number.
 
+## Further steps
+
+To automatically convert the DICOM masks into regions of interest (ROIs) in IDL:
+```
+idl
+brimage,/load
+files = file_search("/path/to/save/masks/E1234","*DCM")
+MaskToMir,files
+```
+These automatically generated ROIs, saved as a `.mir` file, can then be visualized in IDL's interactive environment,
+accessed by the command `brimage` or `mrsc_image`:
+1. Open an IDEAL series (e.g. the water series) that you want to overlay the masks on.
+2. On the image viewer, click "Tools > ROIs", then click the name of the image series (outlined in green) to display a drop-down menu, 
+and select "Open ROI file" to open your `.mir` file. This will display the masks.
+3. To view as an overlay, click the name of image series above the green outlined text and select the name of the series 
+corresponding to what you want the masks to be overlaid on.
+
+All tools in IDL can be used as normal to modify the ROIs as needed.
+<br /><br />
+This can also be done manually by:
+```
+idl
+brimage,/load
+MaskToMir,/interactive
+```
+This opens an interactive version of the `MaskToMir` function, in which you can select the `.DCM` or `.int2` file corresponding to your mask, and 
+automatically make a `.mir` file with default parameters.
+
 ## Credits
 
 This was created by the [Musculoskeletal Magnetic Resonance Imaging Lab](https://profiles.ucsf.edu/roland.krug).<br />
