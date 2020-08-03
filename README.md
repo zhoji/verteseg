@@ -1,5 +1,5 @@
 # VerteSeg: Automatic Vertebral Segmentation
-Source code for [Zhou et al., Frontiers in Endocrinology (2020)](https://www.frontiersin.org/articles/10.3389/fendo.2020.00612/abstract).
+Source code for [Zhou et al., Automatic Vertebral Body Segmentation Based on Deep Learning of Dixon Images for Bone Marrow Fat Fraction Quantification. Frontiers in Endocrinology (2020)](https://www.frontiersin.org/articles/10.3389/fendo.2020.00612/abstract).
 
 ## About
 This code performs automatic segmentation of vertebrae from **sagittal IDEAL** (**I**terative **D**ecomposition of water and fat with **E**cho **A**symmetric and **L**east-squares estimation) **spine MR images**<br /> 
